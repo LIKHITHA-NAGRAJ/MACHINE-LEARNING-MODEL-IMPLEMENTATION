@@ -154,5 +154,25 @@ The user can:
 
 This project was both a learning and practical experience. It combines core machine learning principles, data APIs, and frontend deployment with **Streamlit**. From data preprocessing to model training and final deployment, it’s a complete end-to-end pipeline demonstrating **real-world machine learning** and Python development skills. The fallback handling, user interface, and model integration make it robust and useful in various domains.
 
+OUTPUT
+![Image](https://github.com/user-attachments/assets/7d4d9067-fee0-45df-bd72-7fd7dba79ead)
+
+![Image](https://github.com/user-attachments/assets/64236851-2999-4be1-9dc9-cde57186af16)
+
+![Image](https://github.com/user-attachments/assets/4e70fd10-5fa4-4c4e-9b9b-cac85f46abd2)
+
+![Image](https://github.com/user-attachments/assets/57f3552f-9c43-4650-8ce9-c2f085cd3564)
+
+![Image](https://github.com/user-attachments/assets/293e7c67-c2e5-425f-8178-e06d72cc5b97)
+
+![Image](https://github.com/user-attachments/assets/ca2d78b3-ae2c-4a21-a43f-f95fdd91ce4e)
+
+![Image](https://github.com/user-attachments/assets/dd15a59f-0611-4de0-8ea9-ff995d77621b)
+
+![Image](https://github.com/user-attachments/assets/e4e9d2dc-91d1-4925-9879-8f4162411eb2)
+
+![Image](https://github.com/user-attachments/assets/d856fa44-3fc8-4ac8-8168-90e20b1fd1cd)
+
+![Image](https://github.com/user-attachments/assets/2382b1b2-5f34-47db-ad4a-f5c857a1b719)
 
 
