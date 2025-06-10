@@ -1,0 +1,59 @@
+import streamlit as st
+import requests
+import json
+from datetime import datetime
+
+st.title("📅 Indian Holiday Checker")
+st.write("Check if today is a public holiday in India using real-time data or fallback info.")
+
+today = datetime.today().strftime('%Y-%m-%d')
+current_year = datetime.today().year
+
+# Fallback national holidays
+fallback_holidays = {
+    f"{current_year}-01-26": "Republic Day",
+    f"{current_year}-03-08": "Maha Shivratri",
+    f"{current_year}-03-25": "Holi",
+    f"{current_year}-04-14": "Ambedkar Jayanti",
+    f"{current_year}-08-15": "Independence Day",
+    f"{current_year}-10-02": "Gandhi Jayanti",
+    f"{current_year}-10-31": "Diwali",
+    f"{current_year}-12-25": "Christmas"
+}
+
+try:
+    response = requests.get(f"https://date.nager.at/api/v3/PublicHolidays/{current_year}/IN", timeout=5)
+    response.raise_for_status()
+    holidays = response.json()
+
+    # Save to file
+    with open("holidays.json", "w", encoding="utf-8") as f:
+        json.dump(holidays, f, indent=4, ensure_ascii=False)
+    st.success("✅ Holiday data saved to 'holidays.json'")
+
+    # Check today
+    today_holiday = next((h for h in holidays if h["date"] == today), None)
+
+    if today_holiday:
+        st.success(f"🎉 Today is a public holiday: **{today_holiday['localName']}** ({today_holiday['name']})")
+    else:
+        st.info("📅 Today is not a public holiday in India.")
+
+    # Optional: show next 3
+    st.subheader("📆 Upcoming Holidays")
+    upcoming = [h for h in holidays if h["date"] > today]
+    for h in upcoming[:3]:
+        st.write(f"📌 {h['date']}: **{h['localName']}**")
+
+except Exception as e:
+    st.warning("⚠️ Could not connect to live API. Showing fallback data.")
+
+    if today in fallback_holidays:
+        st.success(f"🎉 Today is a fallback holiday: **{fallback_holidays[today]}**")
+    else:
+        st.info("📅 Today is not a fallback public holiday.")
+
+    st.subheader("📆 Upcoming Fallback Holidays")
+    upcoming_fallback = sorted([(date, name) for date, name in fallback_holidays.items() if date > today])
+    for date, name in upcoming_fallback[:3]:
+        st.write(f"📌 {date}: **{name}**")
